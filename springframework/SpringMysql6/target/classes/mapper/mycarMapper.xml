@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- namespace는 별 의미없지만 꼭 써줘야함 -->
+  <mapper namespace="spring.mysql.mycar.MyCarDao">
+  	<!-- select의 id는 method라고 생각 resultType=결과를 어떤 형태로 보여줄건지 -->
+  	<select id="getAllMyCar" resultType="mdto">
+  		<!-- sql문 작성 -->
+  		select * from mycar order by num desc
+  	</select>
+  	
+  	<!-- 전체개수얻기 -->
+  	<select id="getAllListOfMyCar" resultType="int">
+  		select count(*) from mycar
+  	</select>
+  	
+  	<!-- insert -->
+  	<insert id="insertOfMycar" parameterType="mdto">
+  		insert into mycar (carname,carprice,carcolor,carguip) values (#{carname},#{carprice},#{carcolor},#{carguip})
+  	</insert>
+  	
+
+  	<!-- delete -->
+	<delete id="deleteOfMycar" parameterType="int">
+	    delete from mycar where num = #{num}
+	</delete>
+	
+	<!-- update -->
+	
+	<!-- 수정폼나타내기 (조회) -->
+	<select id="selectOneOfMycar" resultType="mdto" parameterType="String">
+	select * from mycar where num=#{num}
+	</select>
+	
+	<!-- 수정 -->
+	<update id="updateOfMycar" parameterType="mdto">
+	update mycar set carname=#{carname},carprice=#{carprice},carcolor=#{carcolor},carguip=#{carguip} where num=	#{num};
+	</update>
+  </mapper>

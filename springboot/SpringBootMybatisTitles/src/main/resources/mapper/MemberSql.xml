@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="boot.data.mapper.MemberMapperInter">
+  	<insert id="insertMember" parameterType="MemberDto">
+  		insert into bootmember (name, id, pass, photo, hp, addr, email, gaipday) values (#{name}, #{id}, #{pass}, #{photo}, #{hp}, #{addr}, #{email}, now())
+  	</insert>
+  	
+  	<select id="MembergetTotalCount" resultType="int">
+ 		select count(*) from bootmember
+ 	</select>
+ 	
+ 	<select id="MembergetAllData" resultType="MemberDto">
+ 		select * from bootmember order by num
+ 	</select>
+ 	
+ 	<delete id="deleteMember" parameterType="String">
+ 		delete from bootmember where num=#{num}
+ 	</delete>
+ 	
+ 	<select id="MembergetOneData" parameterType="int" resultType="MemberDto">
+ 		select * from bootmember where num=#{num}
+ 	</select>
+ 	
+ 	<update id="updateMember" parameterType="MemberDto">
+ 		update bootmember set name = #{name}, id = #{id}, pass = #{pass}, photo = #{photo}, hp = #{hp}, addr = #{addr}, email = #{email} where num= #{num}
+ 	</update>
+ 	
+ 	<select id="getName" parameterType="String" resultType="String">
+ 		select name from bootmember where id=#{id}
+ 	</select>
+ 	
+ 	<select id="loginPassCheck" parameterType="Map" resultType="int">
+ 		select count(*) from bootmember where id=#{id} and pass=#{pass}
+ 	</select>
+ 	
+ 	<select id="getDataById" parameterType="String" resultType="MemberDto">
+ 		select * from bootmember where id=#{id}
+ 	</select>
+ 	
+ 	<update id="updatePhoto" parameterType="Map">
+ 		update bootmember set photo=#{photo} where num=#{num}
+ 	</update>
+ 	
+	<select id="getDataByNum" parameterType="String" resultType="MemberDto">
+		select * from bootmember where num=#{num}
+	</select>
+	
+	<update id="updateMyInfo" parameterType="MemberDto">
+ 		update bootmember set name = #{name}, pass = #{pass}, hp = #{hp}, addr = #{addr}, email = #{email} where num= #{num}
+ 	</update>
+  </mapper>

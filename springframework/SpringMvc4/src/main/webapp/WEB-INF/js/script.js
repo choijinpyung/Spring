@@ -1,0 +1,11 @@
+/**
+ * 
+ */
+ $(function(){
+ 	$("#myimg").attr("src","../image/ddong.png");
+ 	$("#myimg").hover(function(){
+ 		$(this).attr("src","../image/3.png");
+ 	},function(){
+ 	$(this).attr("src","../image/ddong.png");
+ 	})
+ });
